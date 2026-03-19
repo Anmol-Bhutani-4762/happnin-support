@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappnIn — Support</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f0ff;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #B039FF 0%, #8A2BE2 50%, #6A0DAD 100%);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px 50px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header .tagline {
+            font-size: 18px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .subtitle {
+            font-size: 15px;
+            opacity: 0.75;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Contact Banner */
+        .contact-banner {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin: -30px auto 40px;
+            max-width: 800px;
+            box-shadow: 0 4px 20px rgba(176, 57, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-banner .info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+
+        .contact-banner .info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .contact-banner a.email-btn {
+            background: linear-gradient(135deg, #B039FF, #8A2BE2);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .contact-banner a.email-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(176, 57, 255, 0.35);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #B039FF;
+            display: inline-block;
+        }
+
+        /* FAQ Accordion */
+        .faq-section {
+            margin-bottom: 16px;
+        }
+
+        .faq-section h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: #B039FF;
+            margin-bottom: 12px;
+            padding-left: 4px;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            border: 1px solid #f0e6ff;
+            transition: box-shadow 0.2s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 16px rgba(176, 57, 255, 0.1);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 18px 48px 18px 20px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #1a1a2e;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+            font-family: inherit;
+            line-height: 1.4;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 22px;
+            font-weight: 300;
+            color: #B039FF;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '−';
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .faq-answer-inner {
+            padding: 0 20px 18px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.7;
+            white-space: pre-line;
+        }
+
+        /* Troubleshooting */
+        .troubleshoot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .troubleshoot-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 22px 24px;
+            border: 1px solid #f0e6ff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .troubleshoot-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #B039FF;
+            margin-bottom: 8px;
+        }
+
+        .troubleshoot-card p {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* App Info */
+        .app-info {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin: 30px 0;
+            border: 1px solid #f0e6ff;
+        }
+
+        .app-info p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .app-info strong {
+            color: #1a1a2e;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a1a2e, #2d1b4e);
+            color: #fff;
+            text-align: center;
+            padding: 36px 20px;
+            margin-top: 40px;
+        }
+
+        .footer .app-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .footer .footer-tagline {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-bottom: 16px;
+        }
+
+        .footer a {
+            color: #d4a5ff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .copyright {
+            font-size: 12px;
+            opacity: 0.5;
+            margin-top: 16px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header { padding: 40px 16px 40px; }
+            .header h1 { font-size: 32px; }
+            .contact-banner { flex-direction: column; text-align: center; padding: 22px 18px; }
+            .troubleshoot-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 22px; }
+            .app-info { padding: 20px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>HappnIn</h1>
+        <p class="tagline">Discover Amazing Events In Your City</p>
+        <p class="subtitle">Need help? Find answers to common questions, troubleshooting steps, and ways to contact our support team below.</p>
+    </div>
+
+    <!-- Contact Banner -->
+    <div class="container">
+        <div class="contact-banner">
+            <div class="info">
+                <h3>Need Help? Contact Us</h3>
+                <p>Our support team is ready to assist you with any questions or issues.</p>
+            </div>
+            <a href="mailto:happnin.connect@gmail.com" class="email-btn">Email Support</a>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="container">
+        <div class="section-title">Frequently Asked Questions</div>
+
+        <!-- Getting Started & Account -->
+        <div class="faq-section">
+            <h3>Getting Started &amp; Account</h3>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I create an account?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To create an account:
+
+1. Open the app and tap "Get Started"
+2. Select your role — User (to browse and book events) or Organiser (to create and manage events)
+3. Tap "Sign Up"
+4. Enter your Full Name, Email Address, Phone Number, and Password (minimum 6 characters)
+5. Tap "Sign Up" to create your account
+
+You will be automatically signed in after creating your account.</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I sign in to my account?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To sign in:
+
+1. Open the app
+2. Select your role (User or Organiser)
+3. Tap "Sign In"
+4. Enter your email and password
+5. Toggle "Remember Me" to save your login for next time
+6. Tap "Sign In"
+
+Forgot your password? Tap "Forget Password?" to reset it via email OTP.</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I reset my password?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To reset your password:
+
+1. From the Sign In screen, tap "Forget Password?"
+2. Enter your registered email address
+3. Tap "Continue"
+4. Check your email for a 6-digit OTP code
+5. Enter the OTP in the app
+6. Create and confirm your new password
+7. Tap "Reset Password"
+
+You can now sign in with your new password.</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I edit my profile?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To edit your profile:
+
+1. Go to the Profile tab
+2. Tap "Edit Profile"
+3. Update your profile photo, full name, email address, or phone number
+4. Tap "Update Profile" to save
+
+Your changes will be reflected immediately across the app.</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I change my password?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To change your password:
+
+1. Go to Profile
+2. Tap "Settings"
+3. Tap "Change Password"
+4. Enter your old password for verification
+5. Enter your new password
+6. Confirm the new password
+7. Tap "Continue"
+
+Your password will be updated immediately.</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I delete my account?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To delete your account:
+
+1. Go to the Profile tab
+2. Scroll to the bottom
+3. Tap "Delete Account"
+4. Confirm the deletion
+
+Warning: This action cannot be undone. All your data — including booked tickets, favorite events, profile information, and event history — will be permanently deleted.</div></div>
+            </div>
+        </div>
+
+        <!-- Event Discovery & Browsing -->
+        <div class="faq-section">
+            <h3>Event Discovery &amp; Browsing</h3>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I browse events?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">Browse events on the Home screen:
+
+Time Filters — Use the tabs at the top to filter:
+• Today — Events happening today
+• Weekend — Saturday and Sunday events
+• All — All upcoming events
+
+Search — Use the search bar to find events by name
+
+Favorites — Tap the heart icon on any event card to save it
+
+Tap any event card to view full details, location on map, and ticket information.</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I use advanced filters?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To filter events:
+
+1. Tap the filter icon on the Home screen
+2. Set your preferences:
+   • Date Range — Select start and end dates using the interactive calendar
+   • Price Range — Adjust the dual-thumb slider to set minimum and maximum price
+   • Categories — Select one or more from Music, Sports, Art &amp; Craft, Food &amp; Drink, Tech, Comedy, Theatre, Fitness, Business, and Other
+3. Tap "Apply" to see filtered results
+4. Tap "Reset" to clear all filters</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Can I browse events without an account?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">Yes! You can tap "Continue as a guest" on the Sign In screen to browse all events without creating an account. As a guest, you can view event details, see locations on the map, and explore categories.
+
+To book tickets, save favorites, or receive notifications, you will need to create an account.</div></div>
+            </div>
+        </div>
+
+        <!-- Booking & Tickets -->
+        <div class="faq-section">
+            <h3>Booking &amp; Tickets</h3>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I book tickets for an event?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To book tickets:
+
+1. Browse events on the Home screen
+2. Tap on an event to view details
+3. Tap the "Get Tickets" button
+4. Select the number of tickets
+5. Choose ticket type — Regular or VIP (if available)
+6. Review the total price
+7. Tap "Confirm Booking"
+
+Your tickets will appear in "Booked Events" under your Profile and you will receive a booking confirmation notification.</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Where can I find my booked tickets?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">Your tickets are in "Events &amp; Tickets":
+
+1. Go to the Profile tab
+2. Tap "Events &amp; Tickets"
+3. Switch between:
+   • Upcoming — Future events you have booked
+   • Past — Previous events you attended
+4. Tap any event to view your full ticket details
+
+From the ticket detail screen, you can download or share your ticket as a PDF.</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I download or share my ticket?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To download your ticket:
+
+1. Go to "Events &amp; Tickets" from your Profile
+2. Tap on the booked event
+3. Tap the "Download" button
+4. The ticket will be generated as a professionally formatted PDF
+5. Choose a location to save it in your iPhone Files app
+
+To share your ticket:
+
+1. From the same ticket detail screen, tap the "Share" button
+2. Share the PDF via Messages, Mail, AirDrop, or any other app</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Can I cancel my booking?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">Cancellation policies are set by individual event organisers.
+
+Typical timeframes:
+• 48+ hours before event — Full refund
+• 24–48 hours before event — Partial refund
+• Less than 24 hours — No refund
+
+To request a cancellation, contact the event organiser directly or email us at happnin.connect@gmail.com with your booking reference. Refunds are typically processed within 5–7 business days.</div></div>
+            </div>
+        </div>
+
+        <!-- Favorites -->
+        <div class="faq-section">
+            <h3>Favorites</h3>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I add events to favorites?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To save events to favorites:
+
+1. On the Home screen or Event Details screen, tap the heart icon on an event card
+2. The event is saved instantly to your Favorites list
+
+To view your favorites, go to Profile and tap "Favorites".
+
+To remove an event from favorites, tap the heart icon again. Your favorites list automatically filters out expired events so you only see what is still available.</div></div>
+            </div>
+        </div>
+
+        <!-- For Event Organisers -->
+        <div class="faq-section">
+            <h3>For Event Organisers</h3>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I create an event?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To create an event:
+
+1. Sign in as an Organiser
+2. Tap the "+" button on the Home screen
+3. Fill in event details — Event Name, Category, Date and Time, Location, Description, Guest Name (optional), Duration, Total Tickets, Regular Ticket Price
+4. Optionally enable VIP tickets and set VIP price and count
+5. Toggle "Food Included" if applicable
+6. Add special instructions for attendees
+7. Upload an event poster image from Camera or Photo Library
+8. Tap "Create Event"
+
+Your event will be published instantly and visible to all users.</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I edit or delete an event?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">To edit an event:
+
+1. Go to "My Events" from the Home screen
+2. Tap on the event
+3. Tap the edit icon (pencil) in the top right
+4. Update any details — name, description, date, location, pricing, poster image, and more
+5. Tap "Update Event"
+
+To delete an event:
+
+1. From the event management screen, tap "Delete Event"
+2. Confirm the deletion
+
+Warning: Deleting an event cannot be undone and all related booking data will be removed.</div></div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I track my event revenue and analytics?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">Track your performance from the Organiser Home dashboard:
+
+Dashboard Overview:
+• Total Revenue — All-time earnings across all events
+• Tickets Sold — Total ticket count sold
+• Total Events — Number of events you have created
+
+Per-Event Analytics:
+1. Tap on any event from "My Events"
+2. View revenue generated and tickets sold for that specific event
+
+All metrics update in real time as new tickets are booked.</div></div>
+            </div>
+        </div>
+
+        <!-- Notifications & Settings -->
+        <div class="faq-section">
+            <h3>Notifications &amp; Settings</h3>
+
+            <div class="faq-item">
+                <button class="faq-question">What notifications will I receive?</button>
+                <div class="faq-answer"><div class="faq-answer-inner">You will receive notifications for:
+
+• Booking Confirmations — When you successfully purchase tickets
+• Event Reminders — Notifications before your event starts
+• Event Updates — Changes or announcements from organisers
+• OTP Codes — Verification codes for password recovery
+
+You can customize notification preferences in Settings, including toggling push notifications, email notifications, and event reminders.</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Troubleshooting -->
+    <div class="container">
+        <div class="section-title">Troubleshooting</div>
+
+        <div class="troubleshoot-grid">
+            <div class="troubleshoot-card">
+                <h4>Cannot Sign In</h4>
+                <p>Double-check your email and password. If you have forgotten your password, tap "Forget Password?" on the Sign In screen to reset it via email OTP. Make sure you are selecting the correct role (User or Organiser).</p>
+            </div>
+            <div class="troubleshoot-card">
+                <h4>Not Receiving OTP</h4>
+                <p>Check your spam or junk folder. Make sure you entered the correct email address. Tap "Resend OTP" to request a new code. OTP codes expire after a few minutes, so use them promptly.</p>
+            </div>
+            <div class="troubleshoot-card">
+                <h4>Event Not Showing</h4>
+                <p>Check your active filters — date range, price range, or category filters may be hiding the event. Tap "Reset" on the filter screen to clear all filters and see all events.</p>
+            </div>
+            <div class="troubleshoot-card">
+                <h4>Tickets Not Appearing</h4>
+                <p>Go to Profile → Events &amp; Tickets and check both the "Upcoming" and "Past" tabs. If the event date has passed, your ticket will be in the Past tab. Pull down to refresh the list.</p>
+            </div>
+            <div class="troubleshoot-card">
+                <h4>PDF Ticket Not Downloading</h4>
+                <p>Ensure you have enough storage on your device. When the file picker appears, choose a save location in the Files app. If sharing fails, try again — the PDF is generated fresh each time.</p>
+            </div>
+            <div class="troubleshoot-card">
+                <h4>App Running Slowly</h4>
+                <p>Close and reopen the app. Make sure you are running the latest version. Check your internet connection — HappnIn requires an active connection to load events and process bookings.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- About the App -->
+    <div class="container">
+        <div class="section-title">About HappnIn</div>
+
+        <div class="app-info">
+            <p><strong>HappnIn</strong> is your all-in-one event discovery and management platform. Browse events across categories like Music, Sports, Art &amp; Craft, Food &amp; Drink, Tech, Comedy, Theatre, Fitness, and Business. Book Regular and VIP tickets instantly, download PDF tickets, and manage your event experience — all in one app.</p>
+            <p>Event organisers can create detailed listings, track ticket sales and revenue in real time, and manage events effortlessly from a dedicated dashboard.</p>
+            <p><strong>Contact:</strong> <a href="mailto:happnin.connect@gmail.com">happnin.connect@gmail.com</a></p>
+            <p><strong>Version:</strong> 1.0</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="app-name">HappnIn</div>
+        <div class="footer-tagline">Discover Amazing Events In Your City</div>
+        <p><a href="mailto:happnin.connect@gmail.com">happnin.connect@gmail.com</a></p>
+        <div class="copyright">&copy; 2026 HappnIn. All rights reserved.</div>
+    </div>
+
+    <!-- FAQ Accordion Script -->
+    <script>
+        document.querySelectorAll('.faq-question').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var item = this.parentElement;
+                var answer = item.querySelector('.faq-answer');
+                var isActive = item.classList.contains('active');
+
+                // Close all other open items
+                document.querySelectorAll('.faq-item.active').forEach(function(openItem) {
+                    openItem.classList.remove('active');
+                    openItem.querySelector('.faq-answer').style.maxHeight = null;
+                });
+
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
